@@ -1,97 +1,197 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Postify
 
-# Getting Started
+A React Native mobile application for viewing posts and comments with the ability to edit comments. Built with React Native, Zustand for state management, and React Navigation.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 📋 Features
 
-## Step 1: Start Metro
+- View list of posts
+- View comments for each post
+- Edit comments with validation
+- Optimized performance with memoization
+- Clean, modern UI
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 🏗️ Project Structure
 
-To start the Metro dev server, run the following command from the root of your React Native project:
-
-```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
+```
+Postify/
+├── 📱 Root Configuration Files
+│   ├── App.js                    # Main app entry point
+│   ├── index.js                  # App registration
+│   ├── package.json              # Dependencies & scripts
+│   ├── app.json                  # App configuration
+│   ├── babel.config.js           # Babel configuration
+│   ├── metro.config.js           # Metro bundler config
+│   ├── jest.config.js            # Jest test configuration
+│   ├── yarn.lock                 # Dependency lock file
+│   ├── Gemfile                   # Ruby dependencies (iOS)
+│   └── README.md                 # Project documentation
+│
+├── 📂 src/                       # Source code directory
+│   ├── 📂 components/           # Reusable UI components
+│   │   ├── CommentItem.js
+│   │   ├── CommentItem.styles.jsx
+│   │   ├── LoadingIndicator.js
+│   │   ├── LoadingIndicator.styles.jsx
+│   │   ├── PostItem.js
+│   │   └── PostItem.styles.jsx
+│   │
+│   ├── 📂 screens/              # Screen components
+│   │   ├── PostListScreen.js
+│   │   ├── PostListScreen.styles.jsx
+│   │   ├── CommentsScreen.js
+│   │   ├── CommentsScreen.styles.jsx
+│   │   ├── EditCommentScreen.js
+│   │   └── EditCommentScreen.styles.jsx
+│   │
+│   ├── 📂 navigation/           # Navigation setup
+│   │   └── AppNavigator.js
+│   │
+│   ├── 📂 services/             # API & business logic
+│   │   └── 📂 api/
+│   │       ├── postService.js          # API service (fetchPosts, fetchComments, updateComment)
+│   │       ├── mockData.js             # Mock data for testing
+│   │       └── 📂 __tests__/
+│   │           └── postService.test.js  # API service tests
+│   │
+│   ├── 📂 store/                # State management
+│   │   └── postStore.js         # Zustand store (posts, comments state)
+│   │
+│   ├── 📂 hooks/                # Custom React hooks (empty)
+│   └── 📂 utils/                # Utility functions (empty)
+│
+├── 📂 android/                  # Android native code
+│   ├── app/
+│   │   ├── src/main/           # Android source files
+│   │   └── build.gradle        # Android build config
+│   ├── build.gradle
+│   └── gradle/                  # Gradle wrapper
+│
+├── 📂 ios/                      # iOS native code
+│   ├── Postify/
+│   │   ├── AppDelegate.swift
+│   │   ├── Info.plist
+│   │   └── Images.xcassets/    # App icons
+│   ├── Postify.xcodeproj/       # Xcode project
+│   └── Podfile                  # CocoaPods dependencies
+│
+└── 📂 __tests__/               # Test files (root level)
 ```
 
-## Step 2: Build and run your app
+## 🚀 Setup Instructions
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+### Prerequisites
 
-### Android
+- Node.js >= 20
+- React Native development environment set up
+- For iOS: Xcode and CocoaPods
+- For Android: Android Studio and JDK
 
-```sh
-# Using npm
-npm run android
+### Installation
 
-# OR using Yarn
-yarn android
+1. **Clone the repository** (if applicable)
+   ```bash
+   git clone <repository-url>
+   cd Postify
+   ```
+
+2. **Install dependencies**
+   ```bash
+   yarn install
+   # or
+   npm install
+   ```
+
+3. **iOS Setup** (macOS only)
+   ```bash
+   cd ios
+   pod install
+   cd ..
+   ```
+
+4. **Start Metro bundler**
+   ```bash
+   yarn start
+   # or
+   npm start
+   ```
+
+5. **Run the app**
+
+   For Android:
+   ```bash
+   yarn android
+   # or
+   npm run android
+   ```
+
+   For iOS:
+   ```bash
+   yarn ios
+   # or
+   npm run ios
+   ```
+
+## 📜 Available Scripts
+
+- `yarn start` - Start Metro bundler
+- `yarn android` - Run on Android device/emulator
+- `yarn ios` - Run on iOS simulator/device
+- `yarn test` - Run Jest tests
+- `yarn lint` - Run ESLint
+
+## 🔨 Building APK/AAB
+
+Use the automated build script in `build-scripts/`:
+
+```bash
+# Make script executable (first time only)
+chmod +x build-scripts/build.sh
+
+# Build Debug APK
+./build-scripts/build.sh apk-debug
+
+# Build Release APK
+./build-scripts/build.sh apk-release
+
+# Build Release AAB (for Play Store)
+./build-scripts/build.sh aab-release
+
+# Build everything
+./build-scripts/build.sh all
 ```
 
-### iOS
+**Features:**
+- Automatic build number management
+- Timestamped output files
+- Organized build outputs in `build-scripts/builds/`
+- See `build-scripts/README.md` for full documentation
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## 🛠️ Tech Stack
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+- **React Native** 0.83.1
+- **React** 19.2.0
+- **Zustand** 4.4.7 - State management
+- **React Navigation** 6.x - Navigation
+- **Jest** - Testing framework
 
-```sh
-bundle install
-```
+## 📡 API
 
-Then, and every time you update your native dependencies, run:
+The app uses [JSONPlaceholder](https://jsonplaceholder.typicode.com) as a mock API:
 
-```sh
-bundle exec pod install
-```
+- `GET /posts` - Fetch all posts
+- `GET /posts/{postId}/comments` - Fetch comments for a post
+- `PUT /comments/{commentId}` - Update a comment (mock, doesn't persist)
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## 🏛️ Architecture
 
-```sh
-# Using npm
-npm run ios
+- **State Management:** Zustand (`src/store/postStore.js`)
+- **API Layer:** Service functions in `src/services/api/postService.js`
+- **Navigation:** React Navigation (`src/navigation/AppNavigator.js`)
+- **Styling:** Separate `.styles.jsx` files per component/screen
+- **Testing:** Jest with test files in `__tests__/` directories
 
-# OR using Yarn
-yarn ios
-```
+## 📝 Notes
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- JSONPlaceholder is a mock API and doesn't persist changes
+- Updated comments are stored in local state for immediate UI updates
+- The app includes comprehensive logging for debugging API calls
