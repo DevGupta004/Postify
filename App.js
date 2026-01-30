@@ -1,6 +1,8 @@
 import React from 'react';
 import { StatusBar, useColorScheme } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { AuthProvider } from './src/context/AuthContext';
+import { colors } from './src/theme/colors';
 import AppNavigator from './src/navigation/AppNavigator';
 
 const App = () => {
@@ -8,11 +10,13 @@ const App = () => {
 
   return (
     <SafeAreaProvider>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor="#6200ee"
-      />
-      <AppNavigator />
+      <AuthProvider>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'light-content'}
+          backgroundColor={colors.button.primary}
+        />
+        <AppNavigator />
+      </AuthProvider>
     </SafeAreaProvider>
   );
 };

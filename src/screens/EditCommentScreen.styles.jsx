@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../theme/colors';
 
 export const editCommentStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: colors.background.tertiary,
   },
   scrollContent: {
     flexGrow: 1,
@@ -13,35 +14,46 @@ export const editCommentStyles = StyleSheet.create({
     marginBottom: 24,
   },
   input: {
-    backgroundColor: '#fff',
-    borderRadius: 8,
+    backgroundColor: colors.input.background,
+    borderRadius: 12,
     padding: 16,
     fontSize: 16,
-    color: '#333',
+    color: colors.input.text,
     minHeight: 200,
     textAlignVertical: 'top',
+    borderWidth: 1.5,
+    borderColor: colors.input.border,
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor: colors.shadow.medium,
     shadowOffset: {
       width: 0,
       height: 1,
     },
-    shadowOpacity: 0.22,
+    shadowOpacity: 1,
     shadowRadius: 2.22,
   },
   submitButton: {
-    backgroundColor: '#6200ee',
+    backgroundColor: colors.button.primary,
     paddingVertical: 16,
-    borderRadius: 8,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: 50,
+    shadowColor: colors.shadow.purple,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   submitButtonDisabled: {
     opacity: 0.6,
+    backgroundColor: colors.button.disabled,
   },
   submitButtonText: {
-    color: '#fff',
+    color: colors.button.text,
     fontSize: 16,
     fontWeight: 'bold',
   },

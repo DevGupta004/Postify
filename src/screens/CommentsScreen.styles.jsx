@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../theme/colors';
 
 export const commentsStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: colors.background.tertiary,
   },
   listContent: {
     paddingVertical: 8,
@@ -16,7 +17,7 @@ export const commentsStyles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 16,
-    color: '#666',
+    color: colors.text.secondary,
     textAlign: 'center',
   },
 });

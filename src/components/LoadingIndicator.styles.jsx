@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../theme/colors';
 
 export const loadingStyles = StyleSheet.create({
   container: {
@@ -10,7 +11,7 @@ export const loadingStyles = StyleSheet.create({
   message: {
     marginTop: 16,
     fontSize: 16,
-    color: '#666',
+    color: colors.text.secondary,
     textAlign: 'center',
   },
 });
