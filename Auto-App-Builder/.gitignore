@@ -1,0 +1,5 @@
+# Build outputs
+builds/
+*.apk
+*.app
+*.ipa

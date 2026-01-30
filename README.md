@@ -139,32 +139,23 @@ Postify/
 - `yarn test` - Run Jest tests
 - `yarn lint` - Run ESLint
 
-## 🔨 Building APK/AAB
+## 🔨 Building Apps
 
-Use the automated build script in `build-scripts/`:
+Use the simple build scripts in `Auto-App-Builder/`:
 
 ```bash
-# Make script executable (first time only)
-chmod +x build-scripts/build.sh
+# Build Android Debug APK
+./Auto-App-Builder/android-debug-builder.sh
 
-# Build Debug APK
-./build-scripts/build.sh apk-debug
-
-# Build Release APK
-./build-scripts/build.sh apk-release
-
-# Build Release AAB (for Play Store)
-./build-scripts/build.sh aab-release
-
-# Build everything
-./build-scripts/build.sh all
+# Build iOS Debug (macOS only)
+./Auto-App-Builder/ios-debug-builder.sh
 ```
 
 **Features:**
 - Automatic build number management
 - Timestamped output files
-- Organized build outputs in `build-scripts/builds/`
-- See `build-scripts/README.md` for full documentation
+- Organized build outputs in `Auto-App-Builder/builds/`
+- Simple and smart - just run and go!
 
 ## 🛠️ Tech Stack
 

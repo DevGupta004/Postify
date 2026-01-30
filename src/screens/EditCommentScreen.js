@@ -13,17 +13,12 @@ import {
 import { usePostStore } from '../store/postStore';
 import { editCommentStyles } from './EditCommentScreen.styles';
 
-/**
- * Edit Comment Screen
- * Allows editing of comment body with validation and submission
- */
 const EditCommentScreen = ({ route, navigation }) => {
   const { comment, postId } = route.params;
   const { updateComment } = usePostStore();
   const [commentBody, setCommentBody] = useState(comment.body || '');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Memoized submit handler
   const handleSubmit = useCallback(async () => {
     if (!commentBody.trim()) {
       Alert.alert('Validation Error', 'Comment body cannot be empty');

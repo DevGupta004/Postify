@@ -1,4 +1,3 @@
-// Mock data for development and testing
 export const mockPosts = [
   {
     id: 1,

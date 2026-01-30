@@ -2,10 +2,6 @@ import React, { memo } from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
 import { postItemStyles } from './PostItem.styles';
 
-/**
- * Optimized post item component for FlatList
- * Uses React.memo to prevent unnecessary re-renders
- */
 const PostItem = memo(({ post, onPress }) => {
   return (
     <TouchableOpacity

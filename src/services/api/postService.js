@@ -1,10 +1,5 @@
 const API_BASE_URL = 'https://jsonplaceholder.typicode.com';
 
-/**
- * Fetches all posts from the API
- * GET https://jsonplaceholder.typicode.com/posts
- * @returns {Promise<Object>} Object with success flag and data/error
- */
 export const fetchPosts = async () => {
   try {
     console.log('Fetching posts from:', `${API_BASE_URL}/posts`);
@@ -37,12 +32,6 @@ export const fetchPosts = async () => {
   }
 };
 
-/**
- * Fetches comments for a specific post
- * GET https://jsonplaceholder.typicode.com/posts/{postId}/comments
- * @param {number} postId - The ID of the post
- * @returns {Promise<Object>} Object with success flag and data/error
- */
 export const fetchCommentsByPostId = async (postId) => {
   try {
     const response = await fetch(`${API_BASE_URL}/posts/${postId}/comments`);
@@ -65,17 +54,8 @@ export const fetchCommentsByPostId = async (postId) => {
   }
 };
 
-/**
- * Updates a comment via PUT request
- * PUT https://jsonplaceholder.typicode.com/comments/{commentId}
- * Note: This is a mock API and won't persist changes, but returns the updated object
- * @param {number} commentId - The ID of the comment to update
- * @param {string} body - The updated comment body
- * @returns {Promise<Object>} Object with success flag and data/error
- */
 export const updateComment = async (commentId, body) => {
   try {
-    // Client-side validation
     if (!body || body.trim().length === 0) {
       throw new Error('Comment body cannot be empty');
     }
@@ -86,7 +66,6 @@ export const updateComment = async (commentId, body) => {
     
     console.log(`[updateComment] Fetching current comment with ID: ${commentId}`);
     
-    // Fetch the current comment to get all fields
     const getResponse = await fetch(`${API_BASE_URL}/comments/${commentId}`);
     
     if (!getResponse.ok) {
@@ -102,7 +81,6 @@ export const updateComment = async (commentId, body) => {
       body: currentComment.body?.substring(0, 50) + '...',
     });
     
-    // Prepare the updated comment payload
     const updatedPayload = {
       ...currentComment,
       body: body.trim(),
@@ -111,7 +89,6 @@ export const updateComment = async (commentId, body) => {
     console.log(`[updateComment] Sending PUT request to: ${API_BASE_URL}/comments/${commentId}`);
     console.log('[updateComment] Payload:', JSON.stringify(updatedPayload, null, 2));
     
-    // Update the comment via PUT request
     const putResponse = await fetch(`${API_BASE_URL}/comments/${commentId}`, {
       method: 'PUT',
       headers: {

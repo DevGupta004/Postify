@@ -2,11 +2,6 @@ import React, { memo } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { commentItemStyles } from './CommentItem.styles';
 
-/**
- * Optimized comment item component
- * Displays comment details with an edit button
- * Uses React.memo for performance optimization
- */
 const CommentItem = memo(({ comment, onEdit }) => {
   return (
     <View style={commentItemStyles.container}>

@@ -7,10 +7,6 @@ import EditCommentScreen from '../screens/EditCommentScreen';
 
 const Stack = createNativeStackNavigator();
 
-/**
- * Main app navigator using React Navigation
- * Defines the navigation stack for the Postify app
- */
 const AppNavigator = () => {
   return (
     <NavigationContainer>

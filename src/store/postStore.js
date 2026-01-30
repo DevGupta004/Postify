@@ -5,25 +5,15 @@ import {
   updateComment as updateCommentApi,
 } from '../services/api/postService';
 
-/**
- * Global state store for posts and comments
- * Uses Zustand for lightweight state management
- */
 export const usePostStore = create((set, get) => ({
-  // Posts state
   posts: [],
   postsLoading: false,
   postsError: null,
   
-  // Comments state
   comments: {},
   commentsLoading: {},
   commentsError: {},
   
-  // Actions
-  /**
-   * Fetches all posts and updates the store
-   */
   loadPosts: async () => {
     console.log('loadPosts called');
     set({ postsLoading: true, postsError: null });
@@ -55,10 +45,6 @@ export const usePostStore = create((set, get) => ({
     }
   },
   
-  /**
-   * Fetches comments for a specific post
-   * @param {number} postId - The ID of the post
-   */
   loadComments: async (postId) => {
     set((state) => ({
       commentsLoading: { ...state.commentsLoading, [postId]: true },
@@ -81,18 +67,10 @@ export const usePostStore = create((set, get) => ({
     }
   },
   
-  /**
-   * Updates a comment and updates the local state
-   * @param {number} commentId - The ID of the comment
-   * @param {string} body - The updated comment body
-   * @param {number} postId - The ID of the post (to update local state)
-   */
   updateComment: async (commentId, body, postId) => {
     const result = await updateCommentApi(commentId, body);
     
     if (result.success) {
-      // Update the local state directly instead of refetching
-      // (JSONPlaceholder doesn't persist changes, so refetching would lose the update)
       set((state) => {
         const postComments = state.comments[postId] || [];
         const updatedComments = postComments.map((comment) =>
@@ -110,9 +88,6 @@ export const usePostStore = create((set, get) => ({
     }
   },
   
-  /**
-   * Clears all state (useful for testing or reset)
-   */
   reset: () => {
     set({
       posts: [],

@@ -4,7 +4,6 @@ import {
   updateComment,
 } from '../postService';
 
-// Mock the delay function by using jest timers
 jest.useFakeTimers();
 
 describe('PostService', () => {
@@ -25,9 +24,8 @@ describe('PostService', () => {
     });
 
     it('should handle errors gracefully', async () => {
-      // Mock Math.random to simulate error (needs to be < 0.05 to trigger)
       const originalRandom = Math.random;
-      Math.random = jest.fn(() => 0.01); // Less than 0.05, will trigger error
+      Math.random = jest.fn(() => 0.01);
 
       const promise = fetchPosts();
       jest.advanceTimersByTime(800);

@@ -1,7 +1,0 @@
-# Build output files
-builds/
-*.apk
-*.aab
-
-# Build info
-.build_info
