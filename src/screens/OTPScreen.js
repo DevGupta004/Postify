@@ -92,12 +92,9 @@ const OTPScreen = ({ route, navigation }) => {
         const loginResult = await login(routePhoneNumber, result.token);
         
         if (loginResult.success) {
-          // Navigation will be handled by AppNavigator based on auth state
-          // Reset navigation stack to prevent going back
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'PostList' }],
-          });
+          // Navigation will be automatically handled by AppNavigator
+          // When isAuthenticated becomes true, AppNavigator switches from AuthNavigator to MainNavigator
+          // No manual navigation needed - the auth state change triggers the navigation switch
         } else {
           Alert.alert('Error', loginResult.error || 'Failed to complete login');
         }
